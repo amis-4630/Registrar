@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 namespace Registrar.Models
 {
     public class RegistrarContext : DbContext
@@ -7,6 +8,8 @@ namespace Registrar.Models
         {
         }
 
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; } = null!;
+        public DbSet<Course> Courses { get; set; } = null!;
+        public DbSet<Enrollment> Enrollments { get; set; } = null!;
     }
 }
