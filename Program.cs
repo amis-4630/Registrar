@@ -1,8 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Registrar.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+/*builder.Services.AddDbContext<RegistrarContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RegistrarContext") ?? throw new InvalidOperationException("Connection string 'RegistrarContext' not found.")));*/
+
 builder.Services.AddDbContext<RegistrarContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("RegistrarContext") ?? throw new InvalidOperationException("Connection string 'RegistrarContext' not found.")));
+    options.UseSqlite("Data Source=Registrar.db"));
 
 // Add services to the container.
 

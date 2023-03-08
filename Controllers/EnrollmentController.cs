@@ -19,22 +19,22 @@ namespace Registrar.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Enrollment>>> GetEnrollment()
         {
-            if (_context.Enrollment == null)
+            if (_context.Enrollments == null)
             {
                 return NotFound();
             }
-            return await _context.Enrollment.ToListAsync();
+            return await _context.Enrollments.ToListAsync();
         }
 
         // GET: api/Enrollment/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Enrollment>> GetEnrollment(int id)
         {
-            if (_context.Enrollment == null)
+            if (_context.Enrollments == null)
             {
                 return NotFound();
             }
-            var enrollment = await _context.Enrollment.FindAsync(id);
+            var enrollment = await _context.Enrollments.FindAsync(id);
 
             if (enrollment == null)
             {
@@ -80,11 +80,11 @@ namespace Registrar.Controllers
         [HttpPost]
         public async Task<ActionResult<Enrollment>> PostEnrollment(Enrollment enrollment)
         {
-            if (_context.Enrollment == null)
+            if (_context.Enrollments == null)
             {
                 return Problem("Entity set 'RegistrarContext.Enrollment'  is null.");
             }
-            _context.Enrollment.Add(enrollment);
+            _context.Enrollments.Add(enrollment);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetEnrollment", new { id = enrollment.Id }, enrollment);
@@ -94,17 +94,17 @@ namespace Registrar.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEnrollment(int id)
         {
-            if (_context.Enrollment == null)
+            if (_context.Enrollments == null)
             {
                 return NotFound();
             }
-            var enrollment = await _context.Enrollment.FindAsync(id);
+            var enrollment = await _context.Enrollments.FindAsync(id);
             if (enrollment == null)
             {
                 return NotFound();
             }
 
-            _context.Enrollment.Remove(enrollment);
+            _context.Enrollments.Remove(enrollment);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -112,7 +112,7 @@ namespace Registrar.Controllers
 
         private bool EnrollmentExists(int id)
         {
-            return (_context.Enrollment?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Enrollments?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

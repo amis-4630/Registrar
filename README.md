@@ -30,3 +30,13 @@ This is a sample applicaiton that demonstrates APIs and Data Access in .NET 7.
     - `dotnet aspnet-codegenerator controller -name CoursesController -api -m Courses -dc RegistrarContext -outDir Controllers`
 1. Generate the Enrollments controller
     - `dotnet aspnet-codegenerator controller -name EnrollmentsController -api -m Enrollments -dc RegistrarContext -outDir Controllers`
+
+## Steps to Create the Local Database
+
+1. Add the SQLite provider for local development
+    - `dotnet add package Microsoft.EntityFrameworkCore.Sqlite`
+1. Configure the `RegistrarContext` to the `Program` class
+1. Create the migration
+    - `dotnet ef migrations add InitialCreate`
+1. Update the database
+    - `dotnet ef database update`
