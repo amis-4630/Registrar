@@ -6,7 +6,6 @@ public class Student
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public Address PrimaryAddress { get; set; } = null!;
-
-    public List<Course> Courses { get; set; } = new List<Course>();
+    public List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
 }

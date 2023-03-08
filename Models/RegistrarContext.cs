@@ -12,92 +12,19 @@ namespace Registrar.Models
         public DbSet<Course> Courses { get; set; } = null!;
         public DbSet<Enrollment> Enrollments { get; set; } = null!;
 
-        // protected override void OnModelCreating(ModelBuilder builder)
-        // {
-        //     builder.Entity<Student>()
-        //         .OwnsOne(s => s.PrimaryAddress);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
-        //     builder.Entity<Student>().HasData(
-        //         new Student
-        //         {
-        //             Id = 1,
-        //             FirstName = "John",
-        //             LastName = "Doe",
-        //             PrimaryAddress = new Address
-        //             {
-        //                 Street = "123 Main St",
-        //                 City = "Portland",
-        //                 State = "OR",
-        //                 ZipCode = "97201"
-        //             }
-        //         },
-        //         new Student
-        //         {
-        //             Id = 2,
-        //             FirstName = "Jane",
-        //             LastName = "Doe",
-        //             PrimaryAddress = new Address
-        //             {
-        //                 Street = "456 Main St",
-        //                 City = "Portland",
-        //                 State = "OR",
-        //                 ZipCode = "97201"
-        //             }
-        //         },
-        //         new Student
-        //         {
-        //             Id = 3,
-        //             FirstName = "John",
-        //             LastName = "Smith",
-        //             PrimaryAddress = new Address
-        //             {
-        //                 Street = "101 Main St",
-        //                 City = "Portland",
-        //                 State = "OR",
-        //                 ZipCode = "97201"
-        //             }
-        //         },
-        //         new Student
-        //         {
-        //             Id = 4,
-        //             FirstName = "Jane",
-        //             LastName = "Smith",
-        //             PrimaryAddress = new Address
-        //             {
-        //                 Street = "202 Main St",
-        //                 City = "Portland",
-        //                 State = "OR",
-        //                 ZipCode = "97201"
-        //             }
-        //         }
-        //     );
+            // use a composite key for the enrollment entity    
+            modelBuilder.Entity<Enrollment>()
+                .HasKey(e => new { e.StudentId, e.CourseId });
 
-        //     builder.Entity<Course>().HasData(
-        //         new Course
-        //         {
-        //             Id = 1,
-        //             Name = "Intro to Programming",
-        //             Number = "C# 101",
-        //             Description = "Learn the basics of C#",
-        //             Credits = 3
-        //         },
-        //         new Course
-        //         {
-        //             Id = 2,
-        //             Name = "Intermediate Programming",
-        //             Number = "C# 201",
-        //             Description = "Learn more advanced C#",
-        //             Credits = 3
-        //         },
-        //         new Course
-        //         {
-        //             Id = 3,
-        //             Name = "Advanced Programming",
-        //             Number = "C# 301",
-        //             Description = "Learn the most advanced C#",
-        //             Credits = 3
-        //         }
-        //     );
-        // }
+            // owned entity type for address with 
+            modelBuilder.Entity<Student>()
+            .OwnsOne(s => s.PrimaryAddress);
+
+        }
+
+
     }
 }

@@ -7,8 +7,7 @@ namespace Registrar.Models
         public string Number { get; set; } = null!;
         public string Description { get; set; } = null!;
         public int Credits { get; set; }
-
-        public List<Student> Students { get; set; } = new List<Student>();
+        public List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
     }
 }
